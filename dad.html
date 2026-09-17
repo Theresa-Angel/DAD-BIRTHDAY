@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Happy Birthday, Dad 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+
+/* ─────────────────────────────────────────
+   RESET & ROOT
+───────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --gold:    #f5c842;
+  --gold2:   #e8a020;
+  --rose:    #e8637a;
+  --rose2:   #c0395a;
+  --cream:   #fdf6ec;
+  --warm:    #fff8f0;
+  --deep:    #1a0a00;
+  --text:    #3a2010;
+  --muted:   #8a6a50;
+  --card-bg: rgba(255,255,255,0.82);
+  --shadow:  0 8px 40px rgba(0,0,0,.12);
+  --r:       1.2rem;
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--cream);
+  color:var(--text);
+  font-family:'Lato',sans-serif;
+  font-weight:400;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--cream);}
+::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:3px;}
+
+/* ─────────────────────────────────────────
+   HEART CURSOR
+───────────────────────────────────────── */
+/* SVG heart as data URI — gold fill */
+* {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 28s-14-8.35-14-17A8 8 0 0 1 16 7.22 8 8 0 0 1 30 11c0 8.65-14 17-14 17z' fill='%23f5c842' stroke='%23c0395a' stroke-width='2'/%3E%3C/svg%3E") 16 28, auto;
+}
+
+/* pointer-style elements get the same heart */
+a, button, [role="button"], .fam-card, .t-person, .msg-close, .celebrate-btn, .nav-dot, .tc-btn, [onclick] {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 32 32'%3E%3Cpath d='M16 28s-14-8.35-14-17A8 8 0 0 1 16 7.22 8 8 0 0 1 30 11c0 8.65-14 17-14 17z' fill='%23e8637a' stroke='%23c0395a' stroke-width='2'/%3E%3C/svg%3E") 18 32, pointer;
+}
+
+/* ─────────────────────────────────────────
+   INTRO OVERLAY
+───────────────────────────────────────── */
+#intro{
+  position:fixed;inset:0;
+  background:var(--deep);
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  z-index:2000;
+  cursor:pointer;
+}
+
+.intro-candle{
+  font-size:5rem;
+  animation:flicker 1.4s ease-in-out infinite alternate;
+  margin-bottom:1.5rem;
+  filter:drop-shadow(0 0 20px #f5c842);
+}
+@keyframes flicker{
+  0%  {transform:scale(1)   rotate(-1deg); filter:drop-shadow(0 0 10px #f5c842);}
+  50% {transform:scale(1.05)rotate( 1deg); filter:drop-shadow(0 0 30px #e8a020) drop-shadow(0 0 50px #f5c842);}
+  100%{transform:scale(.97) rotate(-2deg); filter:drop-shadow(0 0 15px #f5c842);}
+}
+
+.intro-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,8vw,4.5rem);
+  color:var(--gold);
+  text-align:center;
+  letter-spacing:.04em;
+  line-height:1.2;
+  animation:fadeUp 1s .3s both;
+}
+.intro-sub{
+  color:#a07040;
+  font-size:clamp(.85rem,2.5vw,1rem);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-top:.8rem;
+  animation:fadeUp 1s .6s both;
+}
+.intro-tap{
+  margin-top:2.5rem;
+  color:#6a4020;
+  font-size:.85rem;
+  letter-spacing:.15em;
+  animation:pulse 2s 1.2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+/* ─────────────────────────────────────────
+   FLOATING PARTICLES CANVAS
+───────────────────────────────────────── */
+#particles{
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.55;
+}
+
+/* ─────────────────────────────────────────
+   HERO SECTION
+───────────────────────────────────────── */
+#hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:6rem 2rem 4rem;
+  overflow:hidden;
+  z-index:1;
+}
+
+.hero-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 30%, #fff4e0 0%, #fde8c8 40%, #f5d5a8 100%);
+  z-index:-1;
+}
+
+/* big number */
+.hero-age{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(8rem,25vw,18rem);
+  font-weight:900;
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:3px var(--gold);
+  opacity:.12;
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  user-select:none;
+  pointer-events:none;
+  animation:slowspin 60s linear infinite;
+}
+@keyframes slowspin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+
+.hero-tag{
+  font-size:.8rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold2);
+  margin-bottom:1.2rem;
+  animation:fadeUp .8s .2s both;
+}
+
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,9vw,7rem);
+  font-weight:900;
+  color:var(--deep);
+  line-height:1.05;
+  animation:fadeUp .8s .4s both;
+}
+.hero-name span{
+  color:var(--rose);
+  font-style:italic;
+}
+
+.hero-subtitle{
+  font-size:clamp(1rem,2.5vw,1.3rem);
+  color:var(--muted);
+  max-width:520px;
+  margin:1.2rem auto 0;
+  font-weight:300;
+  animation:fadeUp .8s .6s both;
+}
+
+/* animated hearts row */
+.hero-hearts{
+  display:flex;gap:.8rem;margin-top:2rem;justify-content:center;
+  animation:fadeUp .8s .8s both;
+}
+.hero-hearts span{
+  font-size:1.6rem;
+  animation:heartbeat 2s ease-in-out infinite;
+}
+.hero-hearts span:nth-child(2){animation-delay:.2s;}
+.hero-hearts span:nth-child(3){animation-delay:.4s;}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  14%{transform:scale(1.3);}
+  28%{transform:scale(1);}
+  42%{transform:scale(1.2);}
+  56%{transform:scale(1);}
+}
+
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:var(--muted);font-size:.72rem;letter-spacing:.15em;
+  text-transform:uppercase;
+  animation:fadeUp 1s 1.4s both;
+}
+.scroll-arrow{
+  width:20px;height:20px;
+  border-right:2px solid var(--gold2);
+  border-bottom:2px solid var(--gold2);
+  transform:rotate(45deg);
+  animation:bounce .9s ease-in-out infinite alternate;
+}
+@keyframes bounce{from{transform:rotate(45deg) translateY(0);}to{transform:rotate(45deg) translateY(6px);}}
+
+/* ─────────────────────────────────────────
+   SECTION SHARED
+───────────────────────────────────────── */
+section{
+  position:relative;
+  padding:5rem 1.5rem;
+  z-index:1;
+}
+
+.section-inner{
+  max-width:960px;
+  margin:0 auto;
+}
+
+.section-label{
+  font-size:.72rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold2);
+  margin-bottom:.6rem;
+  display:block;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:900;
+  color:var(--deep);
+  line-height:1.2;
+  margin-bottom:1rem;
+}
+.section-title em{color:var(--rose);font-style:italic;}
+
+.divider{
+  width:60px;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--rose));
+  border-radius:2px;
+  margin:1.2rem 0 2.5rem;
+}
+
+/* reveal on scroll */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal.from-left{transform:translateX(-50px);}
+.reveal.from-left.visible{transform:translateX(0);}
+.reveal.from-right{transform:translateX(50px);}
+.reveal.from-right.visible{transform:translateX(0);}
+
+/* ─────────────────────────────────────────
+   LOVE NOTE SECTION
+───────────────────────────────────────── */
+#love{
+  background:linear-gradient(160deg,#fff8f0 0%,#fff2e0 100%);
+}
+
+.love-card{
+  background:white;
+  border-radius:var(--r);
+  padding:3rem 2.5rem;
+  box-shadow:var(--shadow), 0 0 0 1px rgba(245,200,66,.2);
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.love-card::before{
+  content:'❝';
+  position:absolute;top:-1rem;left:1.5rem;
+  font-size:8rem;
+  font-family:'Playfair Display',serif;
+  color:var(--gold);
+  opacity:.08;
+  line-height:1;
+}
+.love-quote{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.1rem,3vw,1.5rem);
+  font-style:italic;
+  color:var(--deep);
+  line-height:1.8;
+  max-width:680px;
+  margin:0 auto 1.5rem;
+}
+.love-from{
+  font-size:.85rem;
+  color:var(--muted);
+  letter-spacing:.1em;
+}
+.love-from strong{color:var(--rose);}
+
+/* ─────────────────────────────────────────
+   FAMILY GRID
+───────────────────────────────────────── */
+#family{
+  background:var(--warm);
+}
+
+.family-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:1.5rem;
+  margin-top:1rem;
+}
+
+.fam-card{
+  background:var(--card-bg);
+  border-radius:var(--r);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s;
+  backdrop-filter:blur(8px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:1.8rem 1.2rem 1.4rem;
+  text-align:center;
+}
+.fam-card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+}
+
+/* circular photo on voice card */
+.fam-avatar-wrap{
+  position:relative;
+  margin-bottom:1rem;
+}
+.fam-photo{
+  width:100px;height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  border:4px solid var(--gold);
+  box-shadow:0 4px 20px rgba(245,200,66,.35);
+  background:linear-gradient(135deg,#f5e0c0 0%,#e8c898 100%);
+  transition:transform .3s, box-shadow .3s;
+}
+.fam-card:hover .fam-photo{
+  transform:scale(1.06);
+  box-shadow:0 6px 28px rgba(245,200,66,.55);
+}
+.fam-photo-placeholder{
+  width:100px;height:100px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;
+  background:linear-gradient(135deg,#fdf0e0 0%,#f5d8b0 100%);
+  border:4px solid var(--gold);
+  box-shadow:0 4px 20px rgba(245,200,66,.25);
+}
+
+/* play hint icon */
+.fam-play-hint{
+  position:absolute;
+  bottom:2px;right:2px;
+  width:28px;height:28px;
+  border-radius:50%;
+  background:var(--rose);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;
+  color:white;
+  box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+
+.fam-info{
+  width:100%;
+}
+.fam-name{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;
+  font-weight:700;
+  color:var(--deep);
+  margin-bottom:.2rem;
+}
+.fam-role{
+  font-size:.72rem;
+  color:var(--muted);
+  letter-spacing:.05em;
+  line-height:1.5;
+}
+.fam-badge{
+  display:inline-block;
+  margin-top:.6rem;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--deep);
+  font-size:.6rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:.2rem .6rem;
+  border-radius:99px;
+}
+.fam-badge.rose{background:linear-gradient(135deg,var(--rose),var(--rose2));color:white;}
+
+/* ─────────────────────────────────────────
+   MESSAGE MODAL
+───────────────────────────────────────── */
+#msg-overlay{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(26,10,0,.7);
+  z-index:1000;
+  align-items:center;justify-content:center;
+  padding:1rem;
+  backdrop-filter:blur(6px);
+}
+#msg-overlay.open{display:flex;}
+
+.msg-box{
+  background:white;
+  border-radius:1.5rem;
+  max-width:520px;
+  width:100%;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  animation:popIn .4s cubic-bezier(.22,.61,.36,1);
+  position:relative;
+}
+@keyframes popIn{
+  from{opacity:0;transform:scale(.88);}
+  to{opacity:1;transform:scale(1);}
+}
+
+.msg-header{
+  padding:2rem 2rem 1.5rem;
+  text-align:center;
+  background:linear-gradient(135deg,#fff8f0,#fdecd0);
+  border-bottom:1px solid #f0e0c0;
+}
+.msg-avatar{
+  width:80px;height:80px;
+  border-radius:50%;
+  object-fit:cover;
+  margin:0 auto .8rem;
+  display:block;
+  border:3px solid var(--gold);
+  background:linear-gradient(135deg,#f5e0c0,#e8c898);
+}
+.msg-avatar-emoji{
+  width:80px;height:80px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.8rem;
+  margin:0 auto .8rem;
+  background:linear-gradient(135deg,#fdf0e0,#f5d8b0);
+  border:3px solid var(--gold);
+}
+.msg-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;
+  font-weight:700;
+  color:var(--deep);
+}
+.msg-role{font-size:.78rem;color:var(--muted);margin-top:.2rem;}
+
+.msg-body{
+  padding:1.8rem 2rem 2rem;
+}
+.msg-text{
+  font-size:.95rem;
+  color:var(--text);
+  line-height:1.9;
+  white-space:pre-wrap;
+  min-height:80px;
+}
+
+.msg-close{
+  position:absolute;top:1rem;right:1rem;
+  background:none;border:none;
+  font-size:1.4rem;color:var(--muted);
+  cursor:pointer;
+  line-height:1;
+  transition:color .2s, transform .2s;
+  padding:.3rem;
+}
+.msg-close:hover{color:var(--rose);transform:scale(1.2);}
+
+/* waveform in modal */
+.msg-wave{
+  display:flex;align-items:center;gap:3px;
+  height:36px;margin:1rem 0;
+  justify-content:center;
+}
+.msg-wave .b{
+  width:4px;background:var(--gold);
+  border-radius:2px;
+  animation:wv var(--d,.4s) ease-in-out infinite alternate;
+}
+@keyframes wv{
+  from{height:4px;opacity:.5;}
+  to{height:var(--h,20px);opacity:1;}
+}
+
+/* ── Audio player inside modal ── */
+.msg-audio-player{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:.25rem;
+  margin:.4rem 0 .2rem;
+  width:100%;
+}
+.msg-audio-top{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+.msg-audio-btn{
+  width:52px;height:52px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(135deg,var(--rose),var(--rose2));
+  color:white;
+  font-size:1.4rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  box-shadow:0 4px 18px rgba(232,99,122,.45);
+  transition:transform .2s, box-shadow .2s;
+  flex-shrink:0;
+}
+.msg-audio-btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 6px 24px rgba(232,99,122,.65);
+}
+.msg-audio-btn.playing{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  box-shadow:0 4px 18px rgba(245,200,66,.5);
+  animation:audioGlow 1.5s ease-in-out infinite;
+}
+@keyframes audioGlow{
+  0%,100%{box-shadow:0 4px 18px rgba(245,200,66,.4);}
+  50%{box-shadow:0 6px 28px rgba(245,200,66,.75), 0 0 0 6px rgba(245,200,66,.1);}
+}
+
+/* live waveform bars — animated when playing */
+.msg-wave-live{
+  display:flex;align-items:center;gap:3px;
+  height:28px;
+  flex:1;
+  justify-content:center;
+}
+.msg-wave-live .lb{
+  width:4px;
+  background:var(--gold);
+  border-radius:2px;
+  height:4px;
+  transition:height .15s ease;
+}
+.msg-wave-live.active .lb{
+  animation:liveBar var(--d,.4s) ease-in-out infinite alternate;
+}
+@keyframes liveBar{
+  from{height:4px;opacity:.5;}
+  to{height:var(--h,20px);opacity:1;}
+}
+
+/* progress bar */
+.msg-progress-wrap{
+  width:100%;
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.72rem;
+  color:var(--muted);
+}
+.msg-progress-bar{
+  flex:1;
+  height:4px;
+  background:#f0e0c0;
+  border-radius:2px;
+  overflow:hidden;
+  cursor:pointer;
+}
+.msg-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  border-radius:2px;
+  width:0%;
+  transition:width .2s linear;
+}
+
+/* ─────────────────────────────────────────
+   FAMILY TREE — BIG ANIMATED LAYOUT
+───────────────────────────────────────── */
+#tree-section{
+  background:linear-gradient(175deg,#fff4e6 0%,#fce8c8 60%,#fdf0e0 100%);
+  padding:5rem 1rem 6rem;
+}
+
+#tree-section .section-inner{
+  max-width:1100px;
+}
+
+.tree-wrap{
+  background:linear-gradient(145deg,#fffdf8 0%,#fff8ee 100%);
+  border-radius:2rem;
+  padding:3.5rem 2rem 4rem;
+  box-shadow:0 20px 80px rgba(0,0,0,.1), 0 0 0 1px rgba(245,200,66,.18);
+  overflow-x:auto;
+  text-align:center;
+  position:relative;
+}
+
+/* shimmer background on the wrap */
+.tree-wrap::before{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:2rem;
+  background:radial-gradient(ellipse 60% 40% at 50% 10%,rgba(245,200,66,.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* ── generation rows ── */
+.gen-block{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.tree-gen{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:5rem;
+  position:relative;
+}
+
+/* ── SVG arrows ── */
+#tree-svg .arrow-path{
+  fill:none;
+  stroke:var(--gold2);
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  marker-end:url(#arrowhead);
+  opacity:0;
+  stroke-dasharray:200;
+  stroke-dashoffset:200;
+  transition:stroke-dashoffset 0.7s ease, opacity 0.3s ease;
+}
+#tree-svg .arrow-path.draw{
+  opacity:1;
+  stroke-dashoffset:0;
+}
+#tree-svg .arrow-path.rose{
+  stroke:var(--rose);
+  marker-end:url(#arrowhead-rose);
+}
+
+/* ── individual node ── */
+.t-person{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.55rem;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.22,.61,.36,1);
+  position:relative;
+}
+.t-person:hover{transform:translateY(-8px) scale(1.04);}
+
+/* short vertical line rising from node to the h-spread */
+.t-person .v-up{
+  width:3px;height:40px;
+  background:linear-gradient(180deg,var(--gold2),var(--gold));
+  opacity:.6;
+  border-radius:2px;
+}
+
+/* ── PHOTO SIZES ── */
+/* Standard nodes */
+.t-img{
+  width:100px;height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid var(--gold);
+  box-shadow:0 6px 24px rgba(245,200,66,.35);
+  background:linear-gradient(135deg,#fdf0e0,#f5d8b0);
+  transition:box-shadow .35s, border-color .35s, transform .35s;
+  display:block;
+  animation:floatNode 5s ease-in-out infinite alternate;
+}
+.t-person:nth-child(2) .t-img{animation-delay:.4s;}
+.t-person:nth-child(3) .t-img{animation-delay:.8s;}
+.t-person:nth-child(4) .t-img{animation-delay:1.2s;}
+.t-person:nth-child(5) .t-img{animation-delay:1.6s;}
+@keyframes floatNode{
+  from{transform:translateY(0);}
+  to{transform:translateY(-7px);}
+}
+
+.t-person:hover .t-img{
+  box-shadow:0 12px 36px rgba(245,200,66,.65);
+  border-color:var(--gold2);
+}
+.t-img-placeholder{
+  width:100px;height:100px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.8rem;
+  background:linear-gradient(135deg,#fdf0e0,#f5d8b0);
+  border:4px solid var(--gold);
+  box-shadow:0 6px 24px rgba(245,200,66,.3);
+  transition:box-shadow .35s;
+  animation:floatNode 5s ease-in-out infinite alternate;
+}
+.t-person:hover .t-img-placeholder{
+  box-shadow:0 12px 36px rgba(245,200,66,.5);
+}
+
+/* Dad node — largest, rose glow */
+.t-person.is-dad .t-img,
+.t-person.is-dad .t-img-placeholder{
+  width:130px;height:130px;
+  border-color:var(--rose);
+  border-width:5px;
+  box-shadow:0 8px 32px rgba(232,99,122,.45);
+  font-size:3.6rem;
+  animation:floatDad 4s ease-in-out infinite alternate,
+            glowDad 3s ease-in-out infinite;
+}
+@keyframes floatDad{
+  from{transform:translateY(0);}
+  to{transform:translateY(-10px);}
+}
+@keyframes glowDad{
+  0%,100%{box-shadow:0 8px 32px rgba(232,99,122,.45), 0 0 0 0 rgba(232,99,122,0);}
+  50%{box-shadow:0 12px 48px rgba(232,99,122,.65), 0 0 0 8px rgba(232,99,122,.08);}
+}
+.t-person.is-dad:hover .t-img,
+.t-person.is-dad:hover .t-img-placeholder{
+  box-shadow:0 16px 56px rgba(232,99,122,.7), 0 0 0 12px rgba(232,99,122,.1);
+}
+
+/* ── GRANDPARENTS — single wide card ── */
+.t-person.is-grandparents{
+  gap:.6rem;
+}
+.gp-photo-wrap{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.gp-img{
+  width:170px;height:120px;
+  border-radius:1.2rem;
+  object-fit:cover;
+  border:4px solid var(--gold);
+  box-shadow:0 8px 32px rgba(245,200,66,.4);
+  background:linear-gradient(135deg,#fdf0e0,#f5d8b0);
+  transition:box-shadow .35s, transform .35s;
+  display:block;
+  animation:floatNode 5.5s ease-in-out infinite alternate;
+}
+.gp-img-placeholder{
+  width:170px;height:120px;
+  border-radius:1.2rem;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;gap:.5rem;
+  background:linear-gradient(135deg,#fdf0e0,#f5d8b0);
+  border:4px solid var(--gold);
+  box-shadow:0 8px 32px rgba(245,200,66,.3);
+  animation:floatNode 5.5s ease-in-out infinite alternate;
+}
+.t-person.is-grandparents:hover .gp-img{
+  box-shadow:0 14px 44px rgba(245,200,66,.65);
+  transform:translateY(-6px) scale(1.03);
+}
+.t-person.is-grandparents:hover .gp-img-placeholder{
+  box-shadow:0 14px 44px rgba(245,200,66,.5);
+  transform:translateY(-6px) scale(1.03);
+}
+
+/* ── labels ── */
+.t-label{
+  font-family:'Lato',sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  color:var(--muted);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  max-width:110px;
+  line-height:1.4;
+  text-align:center;
+}
+.t-label.dad-lbl{color:var(--rose2);font-size:.8rem;}
+.t-label.gp-lbl{max-width:160px;}
+
+/* ── couple heart ── */
+.t-couple-heart{
+  align-self:center;
+  margin:0 -.2rem;
+  margin-bottom:2.8rem;
+  font-size:1.3rem;
+  animation:heartbeat 2s ease-in-out infinite;
+  position:relative;
+  z-index:1;
+  filter:drop-shadow(0 2px 6px rgba(232,99,122,.45));
+}
+
+/* ── node entrance animation ── */
+.t-person{
+  opacity:0;
+  transform:translateY(30px) scale(.9);
+  transition:opacity .6s ease, transform .6s cubic-bezier(.22,.61,.36,1);
+}
+.t-person.t-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.t-person.t-visible:hover{transform:translateY(-8px) scale(1.04);}
+.t-person.is-grandparents.t-visible:hover{transform:translateY(-6px) scale(1.03);}
+
+/* ── pop ring on hover ── */
+.t-person::after{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  width:110px;height:110px;
+  border-radius:50%;
+  border:2px solid rgba(245,200,66,0);
+  transform:translate(-50%,-55%) scale(.8);
+  transition:border-color .3s, transform .3s;
+  pointer-events:none;
+}
+.t-person:hover::after{
+  border-color:rgba(245,200,66,.4);
+  transform:translate(-50%,-55%) scale(1.15);
+}
+.t-person.is-dad::after{
+  width:140px;height:140px;
+}
+.t-person.is-grandparents::after{display:none;}
+
+/* ── info card popup ── */
+#tree-card{
+  display:none;
+  margin-top:2rem;
+  background:white;
+  border-radius:1.5rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.14);
+  overflow:hidden;
+  animation:slideUp .4s cubic-bezier(.22,.61,.36,1);
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+#tree-card.open{display:block;}
+
+.tc-inner{
+  display:flex;align-items:center;gap:1.8rem;
+  padding:1.8rem 2rem;
+  flex-wrap:wrap;
+  background:linear-gradient(135deg,#fff8f0,#fff0e0);
+}
+.tc-photo{
+  width:88px;height:88px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid var(--gold);
+  flex-shrink:0;
+}
+.tc-photo.gp-rect{
+  width:120px;height:80px;
+  border-radius:.8rem;
+}
+.tc-photo-emoji{
+  width:88px;height:88px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.6rem;
+  background:linear-gradient(135deg,#fdf0e0,#f5d8b0);
+  border:3px solid var(--gold);
+  flex-shrink:0;
+}
+.tc-photo.dad-border,.tc-photo-emoji.dad-border{border-color:var(--rose);}
+
+.tc-text{flex:1;min-width:160px;}
+.tc-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;font-weight:700;
+  color:var(--deep);margin-bottom:.25rem;
+}
+.tc-name.dad-name{color:var(--rose2);}
+.tc-rel{font-size:.78rem;color:var(--muted);}
+.tc-memory{font-size:.88rem;color:var(--text);margin-top:.55rem;line-height:1.7;}
+.tc-btn{
+  margin-top:.9rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--deep);
+  font-size:.78rem;font-weight:700;
+  border:none;padding:.55rem 1.2rem;
+  border-radius:99px;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+}
+.tc-btn:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(245,200,66,.5);}
+
+/* ── photo hint ── */
+.photo-hint{
+  margin-top:2rem;
+  text-align:center;
+  font-size:.72rem;color:var(--muted);
+  background:rgba(245,200,66,.06);
+  border:1px dashed #e0c898;
+  border-radius:.8rem;
+  padding:.8rem 1rem;
+  line-height:2;
+}
+.photo-hint strong{color:var(--gold2);}
+
+/* ─────────────────────────────────────────
+   CLOSING SECTION
+───────────────────────────────────────── */
+#closing{
+  background:var(--deep);
+  color:white;
+  text-align:center;
+  padding:6rem 2rem;
+  position:relative;
+  overflow:hidden;
+}
+.closing-glow{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+  filter:blur(80px);
+  opacity:.25;
+}
+.glow-a{width:500px;height:500px;background:var(--gold);top:-150px;left:-150px;}
+.glow-b{width:400px;height:400px;background:var(--rose);bottom:-100px;right:-100px;}
+
+.closing-candles{font-size:3rem;margin-bottom:1rem;animation:float 3s ease-in-out infinite alternate;}
+@keyframes float{from{transform:translateY(0);}to{transform:translateY(-12px);}}
+
+.closing-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,6vw,4rem);
+  font-weight:900;
+  color:var(--gold);
+  margin-bottom:.8rem;
+  position:relative;
+}
+.closing-sub{
+  font-size:clamp(.9rem,2.5vw,1.1rem);
+  color:#c0a080;
+  max-width:480px;
+  margin:0 auto 2.5rem;
+  font-weight:300;
+  line-height:1.8;
+  position:relative;
+}
+.closing-from{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:1.2rem;
+  color:var(--rose);
+  position:relative;
+}
+
+/* confetti burst button */
+.celebrate-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:var(--deep);
+  font-size:.9rem;font-weight:700;
+  border:none;padding:.85rem 2rem;
+  border-radius:99px;cursor:pointer;
+  margin-top:2rem;
+  transition:transform .25s,box-shadow .25s;
+  position:relative;
+  letter-spacing:.05em;
+}
+.celebrate-btn:hover{transform:scale(1.06);box-shadow:0 8px 30px rgba(245,200,66,.5);}
+.celebrate-btn:active{transform:scale(.97);}
+
+/* ─────────────────────────────────────────
+   NAV DOT
+───────────────────────────────────────── */
+#nav-dots{
+  position:fixed;right:1.2rem;top:50%;
+  transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:.7rem;
+  z-index:500;
+}
+.nav-dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:rgba(245,200,66,.3);
+  border:2px solid rgba(245,200,66,.5);
+  cursor:pointer;
+  transition:all .3s;
+}
+.nav-dot.active{background:var(--gold);transform:scale(1.3);}
+
+/* ─────────────────────────────────────────
+   MUSIC TOGGLE BUTTON
+───────────────────────────────────────── */
+#music-btn{
+  position:fixed;
+  bottom:1.4rem;
+  right:1.4rem;
+  width:44px;height:44px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border:none;
+  font-size:1.2rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(245,200,66,.45);
+  z-index:600;
+  transition:transform .25s, box-shadow .25s;
+  animation:fadeUp .6s 1.2s both;
+}
+#music-btn:hover{
+  transform:scale(1.12);
+  box-shadow:0 6px 24px rgba(245,200,66,.65);
+}
+
+/* ─────────────────────────────────────────
+   CONFETTI CANVAS
+───────────────────────────────────────── */
+#confetti-canvas{
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:9000;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Confetti canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Nav dots -->
+<nav id="nav-dots" aria-label="Section navigation">
+  <div class="nav-dot active" data-target="hero"   title="Top"         onclick="scrollTo(0,0)"></div>
+  <div class="nav-dot"        data-target="love"   title="Love Note"   onclick="document.getElementById('love').scrollIntoView({behavior:'smooth'})"></div>
+  <div class="nav-dot"        data-target="family" title="Family"      onclick="document.getElementById('family').scrollIntoView({behavior:'smooth'})"></div>
+  <div class="nav-dot"        data-target="tree-section" title="Tree"  onclick="document.getElementById('tree-section').scrollIntoView({behavior:'smooth'})"></div>
+  <div class="nav-dot"        data-target="closing" title="Closing"    onclick="document.getElementById('closing').scrollIntoView({behavior:'smooth'})"></div>
+</nav>
+
+<!-- Particles background -->
+<canvas id="particles"></canvas>
+
+<!-- ─────── INTRO OVERLAY ─────── -->
+<div id="intro" role="dialog" aria-label="Birthday intro">
+  <div class="intro-candle">🕯️</div>
+  <div class="intro-title">Happy Birthday<br/>Dad</div>
+  <div class="intro-sub">A gift made with love</div>
+  <div class="intro-tap">✦ Tap anywhere to begin ✦</div>
+</div>
+
+<!-- ─────── HERO ─────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-age">DAD</div>
+
+  <span class="hero-tag">A celebration for</span>
+  <h1 class="hero-name">Our <span>Dear</span><br/>Dad</h1>
+  <p class="hero-subtitle">
+    Today we celebrate the man who built this family with love,
+    patience, and a heart bigger than we can measure.
+  </p>
+
+  <div class="hero-hearts" aria-hidden="true">
+    <span>❤️</span><span>🎂</span><span>❤️</span>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ─────── LOVE NOTE ─────── -->
+<section id="love">
+  <div class="section-inner">
+    <span class="section-label reveal">From the heart</span>
+    <h2 class="section-title reveal">A <em>letter</em><br/>we wrote for you</h2>
+    <div class="divider reveal"></div>
+    <div class="love-card reveal">
+      <p class="love-quote">
+        "There is no instruction manual for being a great father —
+        yet you figured it out with warmth, strength, and endless love.
+        Every good thing we are, we learned from watching you.
+        Today is yours, Dad. Every candle is for you."
+      </p>
+      <div class="love-from">With all our love — <strong>Your Three Children</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── FAMILY VOICES ─────── -->
+<section id="family">
+  <div class="section-inner">
+    <span class="section-label reveal">Messages for Dad</span>
+    <h2 class="section-title reveal">Words from the <em>people</em><br/>who love you most</h2>
+    <div class="divider reveal"></div>
+
+    <div class="family-grid" id="family-grid"></div>
+  </div>
+</section>
+
+<!-- MESSAGE MODAL -->
+<div id="msg-overlay" role="dialog" aria-modal="true" aria-label="Personal message">
+  <div class="msg-box">
+    <button class="msg-close" onclick="closeMsg()" aria-label="Close">✕</button>
+    <div class="msg-header">
+      <div id="msg-avatar-wrap"></div>
+      <div class="msg-name" id="msg-name"></div>
+      <div class="msg-role" id="msg-role"></div>
+      <div class="msg-wave" id="msg-wave"></div>
+    </div>
+    <div class="msg-body">
+      <div class="msg-text" id="msg-text"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────── FAMILY TREE ─────── -->
+<section id="tree-section">
+  <div class="section-inner">
+    <span class="section-label reveal">The family he built</span>
+    <h2 class="section-title reveal">Your <em>Family</em> Tree</h2>
+    <div class="divider reveal"></div>
+
+    <div class="tree-wrap reveal" id="tree-wrap">
+      <!-- SVG arrows drawn by JS after layout -->
+      <svg id="tree-svg" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible;"></svg>
+
+      <!-- Row 1: Grandparents -->
+      <div class="gen-block" style="margin-bottom:90px;">
+        <div class="tree-gen gen-grandparents" id="gen-grandparents">
+        </div>
+      </div>
+
+      <!-- Row 2: Dad + Mom -->
+      <div class="gen-block" style="margin-bottom:90px;">
+        <div class="tree-gen gen-parents" id="gen-parents">
+        </div>
+      </div>
+
+      <!-- Row 3: Children -->
+      <div class="gen-block">
+        <div class="tree-gen gen-children" id="gen-children">
+        </div>
+      </div>
+    </div>
+
+    <div id="tree-card"></div>
+
+
+  </div>
+</section>
+
+<!-- ─────── CLOSING ─────── -->
+<section id="closing">
+  <div class="closing-glow glow-a"></div>
+  <div class="closing-glow glow-b"></div>
+
+  <div class="closing-candles">🎂🕯️🎂</div>
+
+  <h2 class="closing-title reveal">Happy Birthday,<br/>Dad ❤️</h2>
+  <p class="closing-sub reveal">
+    From your three children — thank you for being our root,
+    our shelter, and the greatest love we have ever known.
+  </p>
+  <div class="closing-from reveal">— With love, always</div>
+
+  <button class="celebrate-btn reveal" onclick="launchConfetti()" aria-label="Celebrate">
+    🎉 Celebrate!
+  </button>
+</section>
+
+<!-- ─────── SCRIPT ─────── -->
+<script>
+/* ══════════════════════════════════════════
+   DATA
+══════════════════════════════════════════ */
+const FAMILY_DATA = [
+  {
+    id:'wife',
+    emoji:'👩',
+    name:'Mom',
+    role:'Wife — His Greatest Love',
+    photo:'mom.jpeg',
+    audio:'mom.ogg',
+    badge:'❤️ Partner',
+    badgeClass:'rose',
+    treeId:'mom',
+    message:`My dearest husband,
+
+Happy Birthday, my love. ❤️`
+  },
+  {
+    id:'daughter',
+    emoji:'👧',
+    name:'Your Daughter',
+    role:'First Born — Your Little Girl',
+    photo:'daughter.jpeg',
+    audio:'daughter.mp4',
+    badge:'🌟 First Born',
+    treeId:'daughter',
+    message:`Dear Daddy,
+
+You have been my superhero since Daddy. Happy Birthday! 🌟`
+  },
+  {
+    id:'son1',
+    emoji:'👦',
+    name:'Your Son',
+    role:'Second Born — Your Right Hand',
+    photo:'son1.jpeg',
+    audio:'son1.ogg',
+    badge:'💪 Second Born',
+    treeId:'son1',
+    message:`Dad,
+
+Happy Birthday, Dad. I love you! 💪`
+  },
+  {
+    id:'son2',
+    emoji:'👦',
+    name:'Your Youngest',
+    role:'Third Born — Your Baby',
+    photo:'son2.jpeg',
+    audio:'son2.ogg',
+    badge:'🎂 Third Born',
+    treeId:'son2',
+    message:`Baba,
+
+I love you to infinity! Happy Birthday! 🎂`
+  }
+];
+
+const PHOTOS = {
+  grandpa:'grandparents.jpeg', grandma:'grandparents.jpeg', dad:'dad.jpeg',
+  mom:'mom.jpeg', daughter:'daughter.jpeg', son1:'son1.jpeg', son2:'son2.jpeg',
+  uncle:null
+};
+
+const TREE_PEOPLE = {
+  dad:      { emoji:'👨', name:'Dad',         rel:'The Heart of This Family',      memory:'Every branch of this tree exists because of him. Our root, our shelter, our love.', isDad:true },
+  mom:      { emoji:'👩', name:'Mom',         rel:'His Greatest Love',             memory:'She chose him, and in doing so, chose all of us. The heart beside his heart.',       voiceId:'wife' },
+  daughter: { emoji:'👧', name:'Daughter',    rel:'First Born — His Little Girl',  memory:'The first time he held her, the whole world made sense.',                           voiceId:'daughter' },
+  son1:     { emoji:'👦', name:'Son',         rel:'Second Born — His Right Hand',  memory:"He taught him to be strong, kind, and brave. The son carries the father's best parts.", voiceId:'son1' },
+  son2:     { emoji:'👦', name:'Youngest',    rel:'Third Born — His Baby',         memory:'The youngest always gets the most spoiled — and he loves every second of it.',       voiceId:'son2' }
+};
+
+/* ══════════════════════════════════════════
+   INTRO
+══════════════════════════════════════════ */
+const intro = document.getElementById('intro');
+intro.addEventListener('click', () => {
+  intro.style.transition = 'opacity 1s ease';
+  intro.style.opacity = '0';
+  setTimeout(() => intro.style.display = 'none', 1000);
+  startParticles();
+  startMusic();
+});
+
+/* ══════════════════════════════════════════
+   FLOATING PARTICLES
+══════════════════════════════════════════ */
+function startParticles(){
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+
+  function resize(){
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const EMOJIS = ['✨','🌸','⭐','💛','🍂','💫','🌼'];
+  for(let i=0;i<28;i++){
+    pts.push({
+      x: Math.random()*window.innerWidth,
+      y: Math.random()*window.innerHeight,
+      size: 10 + Math.random()*14,
+      speed: .18 + Math.random()*.3,
+      drift: (Math.random()-.5)*.4,
+      emoji: EMOJIS[Math.floor(Math.random()*EMOJIS.length)],
+      alpha: .3 + Math.random()*.5
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      ctx.globalAlpha = p.alpha;
+      ctx.font = p.size+'px serif';
+      ctx.fillText(p.emoji, p.x, p.y);
+      p.y -= p.speed;
+      p.x += p.drift;
+      if(p.y < -40){ p.y = H+40; p.x = Math.random()*W; }
+      if(p.x < -40) p.x = W+40;
+      if(p.x > W+40) p.x = -40;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+/* ══════════════════════════════════════════
+   REVEAL ON SCROLL
+══════════════════════════════════════════ */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ══════════════════════════════════════════
+   NAV DOTS ACTIVE STATE
+══════════════════════════════════════════ */
+const sections = ['hero','love','family','tree-section','closing'];
+const dots     = document.querySelectorAll('.nav-dot');
+
+const secObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const i = sections.indexOf(e.target.id);
+      dots.forEach((d,di)=>d.classList.toggle('active',di===i));
+    }
+  });
+},{threshold:.4});
+
+sections.forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) secObs.observe(el);
+});
+
+/* ══════════════════════════════════════════
+   FAMILY GRID
+══════════════════════════════════════════ */
+const grid = document.getElementById('family-grid');
+
+FAMILY_DATA.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'fam-card reveal';
+  card.style.transitionDelay = (i * .1) + 's';
+  card.onclick = () => openMsg(p);
+
+  const hasPhoto = !!p.photo;
+  card.innerHTML = `
+    <div class="fam-avatar-wrap">
+      ${hasPhoto
+        ? `<img src="${p.photo}" alt="${p.name}" class="fam-photo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+           <div class="fam-photo-placeholder" style="display:none">${p.emoji}</div>`
+        : `<div class="fam-photo-placeholder">${p.emoji}</div>`
+      }
+      <div class="fam-play-hint">💬</div>
+    </div>
+    <div class="fam-info">
+      <div class="fam-name">${p.name}</div>
+      <div class="fam-role">${p.role}</div>
+      <span class="fam-badge ${p.badgeClass||''}">${p.badge}</span>
+    </div>`;
+
+  grid.appendChild(card);
+  revealObs.observe(card);
+});
+
+/* ══════════════════════════════════════════
+   MESSAGE MODAL
+══════════════════════════════════════════ */
+let msgTyping = null;
+let msgAudio  = null;  // current Audio instance
+
+function openMsg(person){
+  const overlay = document.getElementById('msg-overlay');
+  overlay.classList.add('open');
+
+  // stop any previous audio
+  if(msgAudio){ msgAudio.pause(); msgAudio.currentTime = 0; msgAudio = null; }
+
+  // avatar
+  const wrap = document.getElementById('msg-avatar-wrap');
+  if(person.photo){
+    wrap.innerHTML = `
+      <img src="${person.photo}" alt="${person.name}" class="msg-avatar"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="msg-avatar-emoji" style="display:none">${person.emoji}</div>`;
+  } else {
+    wrap.innerHTML = `<div class="msg-avatar-emoji">${person.emoji}</div>`;
+  }
+
+  document.getElementById('msg-name').textContent = person.name;
+  document.getElementById('msg-role').textContent = person.role;
+
+  // wave / audio player area
+  const wave = document.getElementById('msg-wave');
+
+  if(person.audio){
+    // ── Real audio player ──
+    // Build bar heights once
+    const barCount = 22;
+    const barHeights = Array.from({length:barCount}, ()=> 5 + Math.random()*22);
+
+    wave.innerHTML = `
+      <div class="msg-audio-player">
+        <div class="msg-audio-top">
+          <div class="msg-wave-live" id="msg-wave-live">
+            ${barHeights.map((h,i)=>`<div class="lb" style="--d:${.1+i*.045}s;--h:${h}px"></div>`).join('')}
+          </div>
+          <button class="msg-audio-btn" id="msg-play-btn" aria-label="Play voice message">▶</button>
+        </div>
+        <div class="msg-progress-wrap">
+          <span id="msg-time-cur">0:00</span>
+          <div class="msg-progress-bar" id="msg-progress-bar">
+            <div class="msg-progress-fill" id="msg-progress-fill"></div>
+          </div>
+          <span id="msg-time-total">0:00</span>
+        </div>
+      </div>`;
+
+    const audio = new Audio(person.audio);
+    msgAudio = audio;
+    const playBtn  = document.getElementById('msg-play-btn');
+    const waveLive = document.getElementById('msg-wave-live');
+    const fill     = document.getElementById('msg-progress-fill');
+    const timeCur  = document.getElementById('msg-time-cur');
+    const timeTotal= document.getElementById('msg-time-total');
+    const progBar  = document.getElementById('msg-progress-bar');
+
+    function fmt(s){ const m=Math.floor(s/60); return m+':'+(Math.floor(s%60)+'').padStart(2,'0'); }
+
+    audio.addEventListener('loadedmetadata', ()=>{ timeTotal.textContent = fmt(audio.duration); });
+    audio.addEventListener('timeupdate', ()=>{
+      const pct = audio.duration ? (audio.currentTime/audio.duration)*100 : 0;
+      fill.style.width = pct + '%';
+      timeCur.textContent = fmt(audio.currentTime);
+    });
+    audio.addEventListener('ended', ()=>{
+      playBtn.textContent = '▶';
+      playBtn.classList.remove('playing');
+      waveLive.classList.remove('active');
+      fill.style.width = '0%';
+      timeCur.textContent = '0:00';
+    });
+
+    playBtn.onclick = ()=>{
+      if(audio.paused){
+        audio.play();
+        playBtn.textContent = '⏸';
+        playBtn.classList.add('playing');
+        waveLive.classList.add('active');
+      } else {
+        audio.pause();
+        playBtn.textContent = '▶';
+        playBtn.classList.remove('playing');
+        waveLive.classList.remove('active');
+      }
+    };
+
+    // click on progress bar to seek
+    progBar.addEventListener('click', e=>{
+      if(!audio.duration) return;
+      const rect = progBar.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+    });
+
+  } else {
+    // ── Decorative animated waveform (no real audio) ──
+    wave.innerHTML = [...Array(18)].map((_,i)=>`
+      <div class="b" style="--d:${.1+i*.04}s;--h:${6+Math.random()*22}px"></div>`).join('');
+  }
+
+  // typed message
+  const textEl = document.getElementById('msg-text');
+  textEl.textContent = '';
+  if(msgTyping) clearInterval(msgTyping);
+  const chars = person.message.split('');
+  let ci = 0;
+  msgTyping = setInterval(()=>{
+    if(ci >= chars.length){ clearInterval(msgTyping); return; }
+    textEl.textContent += chars[ci++];
+  }, 18);
+}
+
+function closeMsg(){
+  document.getElementById('msg-overlay').classList.remove('open');
+  if(msgTyping){ clearInterval(msgTyping); msgTyping = null; }
+  if(msgAudio){ msgAudio.pause(); msgAudio.currentTime = 0; msgAudio = null; }
+}
+
+// close on backdrop click
+document.getElementById('msg-overlay').addEventListener('click', e=>{
+  if(e.target === e.currentTarget) closeMsg();
+});
+
+/* ══════════════════════════════════════════
+   FAMILY TREE — HTML PHOTO TREE
+══════════════════════════════════════════ */
+
+/* ── Build a standard circular node ── */
+function makeNode(id, showVLine){
+  const data  = TREE_PEOPLE[id];
+  const pf    = PHOTOS[id];
+  const isDad = !!data.isDad;
+
+  const wrap = document.createElement('div');
+  wrap.className = 't-person' + (isDad ? ' is-dad' : '');
+  wrap.id = 'node-' + id;
+  wrap.setAttribute('role','button');
+  wrap.setAttribute('aria-label', data.name);
+  wrap.onclick = () => showTreeCard(id);
+
+  if(showVLine){
+    const vup = document.createElement('div');
+    vup.className = 'v-up';
+    wrap.appendChild(vup);
+  }
+
+  if(pf){
+    const img = document.createElement('img');
+    img.src = pf; img.alt = data.name; img.className = 't-img';
+    const ph = document.createElement('div');
+    ph.className = 't-img-placeholder'; ph.textContent = data.emoji; ph.style.display = 'none';
+    img.onerror = ()=>{ img.style.display='none'; ph.style.display='flex'; };
+    wrap.appendChild(img); wrap.appendChild(ph);
+  } else {
+    const ph = document.createElement('div');
+    ph.className = 't-img-placeholder'; ph.textContent = data.emoji;
+    wrap.appendChild(ph);
+  }
+
+  const lbl = document.createElement('div');
+  lbl.className = 't-label' + (isDad ? ' dad-lbl' : '');
+  lbl.textContent = isDad ? '★ Dad ★' : data.name;
+  wrap.appendChild(lbl);
+
+  return wrap;
+}
+
+/* ── Build the single grandparents node (wide rectangular photo) ── */
+function makeGrandparentsNode(){
+  const wrap = document.createElement('div');
+  wrap.className = 't-person is-grandparents';
+  wrap.id = 'node-grandparents';
+  wrap.setAttribute('role','button');
+  wrap.setAttribute('aria-label','Grandparents');
+  wrap.onclick = () => showTreeCard('grandparents');
+
+  const pf = 'grandparents.jpeg';
+  const photoWrap = document.createElement('div');
+  photoWrap.className = 'gp-photo-wrap';
+
+  const img = document.createElement('img');
+  img.src = pf; img.alt = 'Grandparents'; img.className = 'gp-img';
+  const ph = document.createElement('div');
+  ph.className = 'gp-img-placeholder'; ph.style.display = 'none';
+  ph.innerHTML = '👴&nbsp;👵';
+  img.onerror = ()=>{ img.style.display='none'; ph.style.display='flex'; };
+  photoWrap.appendChild(img); photoWrap.appendChild(ph);
+  wrap.appendChild(photoWrap);
+
+  const lbl = document.createElement('div');
+  lbl.className = 't-label gp-lbl';
+  lbl.textContent = 'Grandparents';
+  wrap.appendChild(lbl);
+
+  return wrap;
+}
+
+/* ── Stagger nodes visible ── */
+function staggerVisible(row, baseDelay){
+  Array.from(row.querySelectorAll('.t-person')).forEach((el, i)=>{
+    setTimeout(()=>{ el.classList.add('t-visible'); }, baseDelay + i * 160);
+  });
+}
+
+/* ── Get center-bottom of a node relative to tree-wrap ── */
+function nodeBottom(nodeId){
+  const wrap = document.getElementById('tree-wrap');
+  const node = document.getElementById(nodeId);
+  if(!node) return null;
+  const wRect = wrap.getBoundingClientRect();
+  const nRect = node.getBoundingClientRect();
+  return {
+    x: nRect.left - wRect.left + nRect.width / 2,
+    y: nRect.top  - wRect.top  + nRect.height
+  };
+}
+
+/* ── Get center-top of a node relative to tree-wrap ── */
+function nodeTop(nodeId){
+  const wrap = document.getElementById('tree-wrap');
+  const node = document.getElementById(nodeId);
+  if(!node) return null;
+  const wRect = wrap.getBoundingClientRect();
+  const nRect = node.getBoundingClientRect();
+  return {
+    x: nRect.left - wRect.left + nRect.width / 2,
+    y: nRect.top  - wRect.top
+  };
+}
+
+/* ── Get center-right of a node relative to tree-wrap ── */
+function nodeRight(nodeId){
+  const wrap = document.getElementById('tree-wrap');
+  const node = document.getElementById(nodeId);
+  if(!node) return null;
+  const wRect = wrap.getBoundingClientRect();
+  const nRect = node.getBoundingClientRect();
+  return {
+    x: nRect.right - wRect.left,
+    y: nRect.top   - wRect.top  + nRect.height / 2
+  };
+}
+
+/* ── Get center-left of a node relative to tree-wrap ── */
+function nodeLeft(nodeId){
+  const wrap = document.getElementById('tree-wrap');
+  const node = document.getElementById(nodeId);
+  if(!node) return null;
+  const wRect = wrap.getBoundingClientRect();
+  const nRect = node.getBoundingClientRect();
+  return {
+    x: nRect.left - wRect.left,
+    y: nRect.top  - wRect.top  + nRect.height / 2
+  };
+}
+
+/* ── Draw SVG arrows after layout ── */
+function drawArrows(){
+  const svg = document.getElementById('tree-svg');
+  svg.innerHTML = `
+    <defs>
+      <marker id="arrowhead" markerWidth="8" markerHeight="8"
+              refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#e8a020"/>
+      </marker>
+      <marker id="arrowhead-rose" markerWidth="8" markerHeight="8"
+              refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#e8637a"/>
+      </marker>
+    </defs>`;
+
+  const arrows = [];
+
+  /* 1. Grandparents → Dad (vertical down, with curve) */
+  const gpBot  = nodeBottom('node-grandparents');
+  const dadTop = nodeTop('node-dad');
+  if(gpBot && dadTop){
+    const mx = (gpBot.x + dadTop.x) / 2;
+    const my = (gpBot.y + dadTop.y) / 2;
+    arrows.push({
+      d: `M ${gpBot.x} ${gpBot.y + 6} C ${gpBot.x} ${gpBot.y + 38}, ${dadTop.x} ${dadTop.y - 38}, ${dadTop.x} ${dadTop.y - 6}`,
+      cls: 'arrow-path',
+      delay: 800
+    });
+  }
+
+  /* 2. Dad → Mom (horizontal right arrow) */
+  const dadRight = nodeRight('node-dad');
+  const momLeft  = nodeLeft('node-mom');
+  if(dadRight && momLeft){
+    arrows.push({
+      d: `M ${dadRight.x + 6} ${dadRight.y} C ${dadRight.x + 30} ${dadRight.y}, ${momLeft.x - 30} ${momLeft.y}, ${momLeft.x - 6} ${momLeft.y}`,
+      cls: 'arrow-path rose',
+      delay: 1200
+    });
+  }
+
+  /* 3. Dad+Mom midpoint → each child (fork down) */
+  const dadBot = nodeBottom('node-dad');
+  const momBot = nodeBottom('node-mom');
+  const children = ['daughter','son1','son2'];
+
+  if(dadBot && momBot){
+    const forkX = (dadBot.x + momBot.x) / 2;
+    const forkStartY = Math.max(dadBot.y, momBot.y) + 8;
+
+    children.forEach((cid, i) => {
+      const cTop = nodeTop('node-' + cid);
+      if(!cTop) return;
+      const forkMidY = forkStartY + 36;
+      arrows.push({
+        d: `M ${forkX} ${forkStartY} L ${forkX} ${forkMidY} L ${cTop.x} ${forkMidY} L ${cTop.x} ${cTop.y - 6}`,
+        cls: 'arrow-path',
+        delay: 1600 + i * 200
+      });
+    });
+  }
+
+  /* Render & animate */
+  arrows.forEach(({ d, cls, delay }) => {
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', d);
+    path.setAttribute('class', cls);
+    const len = 300;
+    path.style.strokeDasharray  = len;
+    path.style.strokeDashoffset = len;
+    svg.appendChild(path);
+    setTimeout(() => {
+      path.style.transition = 'stroke-dashoffset .8s cubic-bezier(.4,0,.2,1), opacity .3s ease';
+      path.style.opacity = '1';
+      path.style.strokeDashoffset = '0';
+    }, delay);
+  });
+}
+
+function buildTree(){
+  /* ── Row 1: single grandparents node ── */
+  const gpRow = document.getElementById('gen-grandparents');
+  gpRow.appendChild(makeGrandparentsNode());
+
+  /* ── Row 2: Dad + Mom (no heart spacer — arrow handles the connection) ── */
+  const parRow = document.getElementById('gen-parents');
+  parRow.appendChild(makeNode('dad', false));
+  parRow.appendChild(makeNode('mom', false));
+
+  /* ── Row 3: Children ── */
+  const kidRow = document.getElementById('gen-children');
+  ['daughter','son1','son2'].forEach(id => {
+    kidRow.appendChild(makeNode(id, false));
+  });
+
+  /* Stagger node entrances per row */
+  staggerVisible(gpRow,  200);
+  staggerVisible(parRow, 600);
+  staggerVisible(kidRow, 1050);
+
+  /* Draw arrows after nodes have rendered */
+  setTimeout(drawArrows, 300);
+}
+
+/* ── Add grandparents to TREE_PEOPLE for popup ── */
+TREE_PEOPLE.grandparents = {
+  emoji: '👴👵',
+  name: 'Grandparents',
+  rel: 'The Roots of This Family',
+  memory: 'Everything this family is flows from them — their love, strength, and wisdom live in every branch of this tree.'
+};
+PHOTOS.grandparents = 'grandparents.jpeg';
+
+function showTreeCard(id){
+  const data = TREE_PEOPLE[id];
+  const card = document.getElementById('tree-card');
+  card.className = 'open';
+  const pf   = PHOTOS[id];
+  const vId  = data.voiceId;
+  const vPerson = vId ? FAMILY_DATA.find(p=>p.id===vId) : null;
+  const isGp = id === 'grandparents';
+
+  let avatarHTML;
+  if(pf){
+    avatarHTML = `<img src="${pf}" alt="${data.name}"
+      class="tc-photo${data.isDad?' dad-border':''}${isGp?' gp-rect':''}"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="tc-photo-emoji${data.isDad?' dad-border':''}" style="display:none">${data.emoji}</div>`;
+  } else {
+    avatarHTML = `<div class="tc-photo-emoji${data.isDad?' dad-border':''}">${data.emoji}</div>`;
+  }
+
+  card.innerHTML = `
+    <div class="tc-inner">
+      ${avatarHTML}
+      <div class="tc-text">
+        <div class="tc-name${data.isDad?' dad-name':''}">${data.name}</div>
+        <div class="tc-rel">${data.rel}</div>
+        <div class="tc-memory">${data.memory}</div>
+        ${vPerson?`<button class="tc-btn" onclick="openMsg(FAMILY_DATA.find(p=>p.id==='${vId}'))">
+          💬 Read their message
+        </button>`:''}
+      </div>
+    </div>`;
+
+  card.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// Build tree when it enters viewport (once)
+let treeBuilt = false;
+const treeObs = new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting && !treeBuilt){
+    treeBuilt = true;
+    buildTree();
+  }
+},{threshold:.15});
+treeObs.observe(document.getElementById('tree-wrap'));
+
+/* ══════════════════════════════════════════
+   BACKGROUND MUSIC (Web Audio API)
+   — gentle looping melody + soft pad
+══════════════════════════════════════════ */
+let musicCtx = null, musicNodes = [], musicMuted = false;
+
+function startMusic(){
+  if(musicCtx) return;
+  musicCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  const masterGain = musicCtx.createGain();
+  masterGain.gain.setValueAtTime(0, musicCtx.currentTime);
+  masterGain.gain.linearRampToValueAtTime(0.13, musicCtx.currentTime + 3);
+  masterGain.connect(musicCtx.destination);
+  musicNodes.push(masterGain);
+
+  /* ── Soft reverb convolver (impulse approximation via gain) ── */
+  const reverb = musicCtx.createGain();
+  reverb.gain.value = 0.35;
+  reverb.connect(masterGain);
+
+  /* ── Helper: play one sustained note ── */
+  function tone(freq, startT, dur, vol=0.05, type='sine'){
+    const osc = musicCtx.createOscillator();
+    const g   = musicCtx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(0, startT);
+    g.gain.linearRampToValueAtTime(vol, startT + 0.08);
+    g.gain.setValueAtTime(vol, startT + dur - 0.3);
+    g.gain.linearRampToValueAtTime(0, startT + dur);
+    osc.connect(g);
+    g.connect(reverb);
+    osc.start(startT);
+    osc.stop(startT + dur + 0.05);
+    musicNodes.push(osc);
+  }
+
+  /* ── Melody: gentle "Happy Birthday" inspired lullaby loop ── */
+  // Notes in Hz  — C maj pentatonic scale
+  const C4=261.63, D4=293.66, E4=329.63, G4=392.00, A4=440.00,
+        C5=523.25, D5=587.33, E5=659.25, G5=783.99;
+
+  // phrase A (bars 1-4) — sweet arpeggiated motif
+  const phraseA = [
+    [C4,0.0],[E4,0.5],[G4,1.0],[C5,1.5],
+    [A4,2.2],[G4,2.7],[E4,3.2],[C4,3.7],
+    [D4,4.4],[G4,4.9],[A4,5.4],[G4,5.9],
+    [E4,6.6],[C4,7.1],[D4,7.6],[C4,8.1],
+  ];
+
+  // phrase B (bars 5-8) — slightly higher, warmer
+  const phraseB = [
+    [G4,0.0],[C5,0.5],[D5,1.0],[E5,1.5],
+    [D5,2.2],[C5,2.7],[A4,3.2],[G4,3.7],
+    [C5,4.4],[G4,4.9],[E4,5.4],[D4,5.9],
+    [C5,6.6],[E5,7.1],[G5,7.6],[C5,8.1],
+  ];
+
+  const loopLen = 9.0; // seconds per loop
+  const loopCount = 40; // ~6 minutes of music
+
+  for(let loop = 0; loop < loopCount; loop++){
+    const base = musicCtx.currentTime + loop * loopLen;
+    const phrase = loop % 2 === 0 ? phraseA : phraseB;
+    phrase.forEach(([freq, dt]) => {
+      tone(freq, base + dt, 0.6, 0.055, 'sine');
+      // soft harmonic overtone
+      tone(freq * 2, base + dt, 0.4, 0.015, 'triangle');
+    });
+
+    /* pad chord every loop — C major */
+    [C4, E4, G4].forEach(f => tone(f, base, loopLen - 0.4, 0.022, 'triangle'));
+  }
+
+  /* ── Mute / unmute button ── */
+  const btn = document.createElement('button');
+  btn.id = 'music-btn';
+  btn.innerHTML = '🎵';
+  btn.title = 'Toggle music';
+  btn.setAttribute('aria-label','Toggle background music');
+  btn.onclick = () => {
+    musicMuted = !musicMuted;
+    masterGain.gain.cancelScheduledValues(musicCtx.currentTime);
+    masterGain.gain.linearRampToValueAtTime(
+      musicMuted ? 0 : 0.13,
+      musicCtx.currentTime + 0.5
+    );
+    btn.innerHTML = musicMuted ? '🔇' : '🎵';
+  };
+  document.body.appendChild(btn);
+}
+
+/* ══════════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════════ */
+function launchConfetti(){
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx    = canvas.getContext('2d');
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  const COLORS = ['#f5c842','#e8637a','#7ed6a8','#64b5f6','#ff8a65','#ba68c8','#ffffff'];
+  for(let i=0;i<200;i++){
+    pieces.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height - canvas.height,
+      w: 6 + Math.random()*10,
+      h: 10 + Math.random()*14,
+      r: Math.random()*Math.PI*2,
+      dr: (Math.random()-.5)*.15,
+      dx: (Math.random()-.5)*3,
+      dy: 2 + Math.random()*4,
+      color: COLORS[Math.floor(Math.random()*COLORS.length)],
+      alpha: 1
+    });
+  }
+
+  let frame;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive = false;
+    pieces.forEach(p=>{
+      p.x += p.dx; p.y += p.dy; p.r += p.dr;
+      if(p.y > canvas.height + 20) p.alpha -= .02;
+      if(p.alpha > 0) alive = true;
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.r);
+      ctx.globalAlpha = Math.max(0,p.alpha);
+      ctx.fillStyle   = p.color;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    if(alive) frame = requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  if(frame) cancelAnimationFrame(frame);
+  draw();
+}
+</script>
+</body>
+</html>
